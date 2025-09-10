@@ -1,8 +1,8 @@
-/** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class", // penting biar toggle jalan
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",  // 👈 penting untuk React/Vite
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},

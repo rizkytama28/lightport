@@ -1,2 +1,10 @@
 /* Tailwind v4 pakai import baru */
 @import "tailwindcss";
+:root {
+  scroll-behavior: smooth;
+}
+.btn-invert {
+  @apply rounded-2xl px-5 py-2.5 font-medium transition;
+  @apply bg-gray-900 text-white hover:bg-white hover:text-black;
+  @apply dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white;
+}

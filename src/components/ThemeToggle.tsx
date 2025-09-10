@@ -4,31 +4,35 @@ import { Moon, Sun } from "lucide-react";
 const THEME_KEY = "theme";
 
 export default function ThemeToggle() {
-  const [dark, setDark] = useState<boolean>(() => {
-    const saved = localStorage.getItem(THEME_KEY);
-    if (saved) return saved === "dark";
-    return window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
-  });
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (dark) {
-      root.classList.add("dark");
-      localStorage.setItem(THEME_KEY, "dark");
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved) {
+      setDark(saved === "dark");
+      document.documentElement.classList.toggle("dark", saved === "dark");
     } else {
-      root.classList.remove("dark");
-      localStorage.setItem(THEME_KEY, "light");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setDark(prefersDark);
+      document.documentElement.classList.toggle("dark", prefersDark);
     }
-  }, [dark]);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !dark ? "dark" : "light";
+    setDark(!dark);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    localStorage.setItem(THEME_KEY, newTheme);
+  };
 
   return (
     <button
-      aria-label="Toggle theme"
-      onClick={() => setDark((v) => !v)}
-      className="inline-flex items-center gap-2 rounded-2xl border border-gray-200 dark:border-gray-800 px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-900 transition"
+      onClick={toggleTheme}
+      className="px-3 py-2 rounded-lg border border-gray-400 dark:border-gray-700 transition
+                 hover:bg-black hover:text-white
+                 dark:hover:bg-white dark:hover:text-black"
     >
-      {dark ? <Sun size={16} /> : <Moon size={16} />}
-      <span className="hidden sm:inline">{dark ? "Light" : "Dark"}</span>
+      {dark ? <Sun size={18} /> : <Moon size={18} />}
     </button>
   );
 }

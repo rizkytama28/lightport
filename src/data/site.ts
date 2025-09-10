@@ -1,11 +1,11 @@
 export const profile = {
-  name: "Graham",
-  role: "Informatics Student",
-  tagline: "Building clean, fast, and delightful web experiences.",
-  email: "your_email@example.com", // ganti ya
+  name: "Rizkytama David MG",
+  role: "Informatics",
+  tagline: "Machine Learning Enthusiast",
+  email: "rizkytama0012@gmail.com", // ganti ya
   socials: [
-    { label: "GitHub", href: "https://github.com/youruser" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/youruser" },
+    { label: "GitHub", href: "https://github.com/rizkytama28" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/rizkytama-david-a1197b376/" },
     { label: "X/Twitter", href: "https://twitter.com/youruser" },
   ],
 };
