@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { FaLinkedin } from "react-icons/fa";
 import Section from "./Section"; // Pakai Section utama, bukan bikin ulang
 
 export default function About() {
