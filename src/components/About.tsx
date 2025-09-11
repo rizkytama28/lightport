@@ -17,17 +17,9 @@ export default function About() {
           <img
             src="/profile.jpg"
             alt="Foto Graham Rizky Tama"
-            className="w-40 aspect-square rounded-full object-cover border-4 border-gray-300 dark:border-gray-700"
+            className="w-65 aspect-square rounded-full object-cover border-4 border-gray-300 dark:border-gray-700"
           />
-          <a
-            href="https://www.linkedin.com/in/rizkytama-david-a1197b376/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 flex items-center gap-2 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500 transition pl-7"
-          >
-            <FaLinkedin size={24} />
-            <span className="font-medium">LinkedIn</span>
-          </a>
+
         </motion.div>
 
         {/* Teks About */}
@@ -39,20 +31,14 @@ export default function About() {
           className="flex-1 pl-0 md:pl-8"
         >
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-            Hello! I'm Graham Rizky Tama, a passionate web developer with expertise in
-            building dynamic and responsive web applications. I love turning
-            complex problems into simple, beautiful, and intuitive designs.
+           Rizkytama David is an Informatics graduate from Universitas Amikom Yogyakarta, currently developing expertise in Data Analytics. He has professional experience as an External Supervisor at Waroeng Banyuwangi Selomartani, where he contributes to operational oversight and strategic improvements.
           </p>
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-            With a strong foundation in JavaScript, React, and Node.js, I enjoy
-            creating seamless user experiences and robust backend systems. I'm
-            constantly exploring new technologies and best practices to improve
-            my skills and deliver high-quality solutions.
+           David is deeply interested in exploring the Food & Beverage (F&B) sector, Machine Learning, and Analytical Thinking.
+
           </p>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            Let's connect and collaborate on exciting projects! Feel free to
-            reach out to me through the contact form or connect with me on
-            LinkedIn.
+            Passionate about data-driven decision making, predictive modeling, and applying technology to solve real-world challenges.
           </p>
         </motion.div>
       </div>

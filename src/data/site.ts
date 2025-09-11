@@ -1,12 +1,16 @@
 export const profile = {
-  name: "Rizkytama David MG",
+  name: "Rizkytama David ",
   role: "Informatics",
-  tagline: "Machine Learning Enthusiast",
   email: "rizkytama0012@gmail.com", // ganti ya
+  headlines: [
+    'A Machine Learning Practitioner.',
+    'Passionate about predictive modeling.',
+    'Solving real-world challenges with technology.',
+    'With a deep interest in the F&B sector.',
+  ],
   socials: [
     { label: "GitHub", href: "https://github.com/rizkytama28" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/rizkytama-david-a1197b376/" },
-    { label: "X/Twitter", href: "https://twitter.com/youruser" },
   ],
 };
 
