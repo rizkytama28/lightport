@@ -47,7 +47,7 @@ export default function Navbar() {
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* / Logo / Nama Anda */}
         <a href="#home" className={`font-bold text-xl transition-colors ${isScrolled ? 'text-[#0d9488]' : 'text-white'}`}>
-          Rizky Tama
+          Rizkytama
         </a>
         
         {/* / Navigasi untuk Desktop */}
