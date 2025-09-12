@@ -1,7 +1,14 @@
-// / Mengimpor data profil dan komponen Section
+// / Mengimpor hook dari React dan komponen lainnya
+import React, { useState } from "react";
+import { profile } from "../data/site";
 import Section from "./Section";
+import Resume from "./Resume"; // / Impor komponen Resume baru
+import { X, Download } from "lucide-react";
 
 export default function About() {
+  // / State untuk mengontrol visibilitas modal
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   return (
     <Section id="about">
       <div className="py-24 sm:py-32">
@@ -9,7 +16,7 @@ export default function About() {
           {/* / Judul Section */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
-              Mengapa Memilih Saya?
+              Mengapa Saya?
             </h2>
             <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
           </div>
@@ -26,28 +33,46 @@ export default function About() {
 
             {/* / Kolom Teks Deskripsi */}
             <div className="md:col-span-3">
-              {/* / REVISI: Subjudul disesuaikan dengan narasi baru */}
               <h3 className="text-3xl font-semibold text-[#334155] mb-4">
                 Problem Solver Berbasis Teknologi
               </h3>
-              {/* / REVISI: Teks yang menguraikan tagline Anda */}
               <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
                 <p>
                   Sebagai seorang <strong>lulusan Informatika</strong>, saya menjelajahi dunia <strong>Data Analytics</strong> dan <strong>Machine Learning</strong> bukan hanya sebagai disiplin akademis, tetapi sebagai perangkat untuk menciptakan dampak. Saya memiliki fondasi yang kuat untuk memahami bagaimana teknologi bekerja dari akarnya.
                 </p>
               </div>
               <div className="mt-8">
-                <a 
-                  href="#contact" 
-                  className="inline-block rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c]/90 hover:scale-105"
+                {/* / REVISI: Tombol diubah untuk membuka modal */}
+                <button
+                  onClick={() => setIsResumeOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c]/90 hover:scale-105"
                 >
-                  Let's Discuss
-                </a>
+                  <Download size={20} />
+                  Lihat Resume
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* / REVISI: Modal untuk menampilkan Resume */}
+      {isResumeOpen && (
+        <div className="fixed inset-0 bg-black/70 z-[9999] flex justify-center items-center p-4">
+          <div 
+            className="relative w-full h-full max-w-4xl max-h-[90vh] overflow-y-auto"
+          >
+            <Resume />
+            <button
+              onClick={() => setIsResumeOpen(false)}
+              className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black"
+              aria-label="Tutup Resume"
+            >
+              <X size={24} />
+            </button>
+          </div>
+        </div>
+      )}
     </Section>
   );
 }
