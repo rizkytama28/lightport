@@ -44,7 +44,7 @@ export default function About() {
             <div className="mt-8">
               <a 
                 href="#contact" 
-                className="inline-block rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#fb923c] hover:bg-[#fb923c]/90 hover:scale-105"
+                className="inline-block rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c]/90 hover:scale-105"
               >
                 Hubungi Saya
               </a>
