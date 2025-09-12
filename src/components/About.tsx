@@ -25,7 +25,6 @@ export default function About() {
               />
             </div>
 
-<<<<<<< HEAD
             {/* / Kolom Teks Deskripsi */}
             <div className="md:col-span-3">
               {/* / REVISI: Subjudul disesuaikan dengan narasi baru */}
@@ -46,25 +45,6 @@ export default function About() {
                   Let's Discuss
                 </a>
               </div>
-=======
-          {/* / Kolom Teks Deskripsi */}
-          <div className="md:col-span-3">
-            <h3 className="text-3xl font-semibold text-[#334155] mb-4">
-              Seorang {profile.role}
-            </h3>
-            <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
-              <p>
-                Saya adalah seorang antusias Machine Learning dengan minat mendalam di sektor Food & Beverage (F&B) dan pemikiran analitis. Saya bersemangat dalam pengambilan keputusan berbasis data, pemodelan prediktif, dan menerapkan teknologi untuk memecahkan tantangan di dunia nyata.
-              </p>
-            </div>
-            <div className="mt-8">
-              <a 
-                href="#contact" 
-                className="inline-block rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c]/90 hover:scale-105"
-              >
-                Hubungi Saya
-              </a>
->>>>>>> be7dc83612bf973eb329e5f92436bd8706f40acd
             </div>
           </div>
         </div>
@@ -72,7 +52,4 @@ export default function About() {
     </Section>
   );
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> be7dc83612bf973eb329e5f92436bd8706f40acd
