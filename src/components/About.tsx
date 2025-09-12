@@ -1,45 +1,56 @@
-import { motion } from "framer-motion";
-import Section from "./Section"; // Pakai Section utama, bukan bikin ulang
+// / Mengimpor data profil dan komponen Section
+import { profile } from "../data/site";
+import Section from "./Section";
 
 export default function About() {
   return (
-    <Section id="about" title="About Me" className="py-16">
-      <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
-        {/* Foto + LinkedIn */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex flex-col items-center md:items-start min-w-[160px]"
-        >
-          <img
-            src="/profile.jpg"
-            alt="Foto Graham Rizky Tama"
-            className="w-65 aspect-square rounded-full object-cover border-4 border-gray-300 dark:border-gray-700"
-          />
+    <Section id="about">
+      {/* / Padding sekarang diterapkan di div terluar */}
+      <div className="py-24 sm:py-32 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* / Judul Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
+            Tentang Saya
+          </h2>
+          <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
+        </div>
 
-        </motion.div>
+        {/* / Layout dua kolom */}
+        <div className="grid md:grid-cols-5 gap-16 items-center">
+          {/* / Kolom Gambar */}
+          <div className="md:col-span-2">
+            {/* / PERBAIKAN: Menambahkan `aspect-ratio` untuk mencegah layout shift.
+              / Browser akan menyiapkan kotak dengan rasio 4:5 untuk gambar.
+            */}
+            <div className="aspect-w-4 aspect-h-5 bg-slate-200 rounded-lg">
+              <img 
+                src="/profile.jpg"
+                alt="Foto Profil Rizky Tama"
+                className="rounded-lg shadow-lg w-full h-full object-cover"
+              />
+            </div>
+          </div>
 
-        {/* Teks About */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex-1 pl-0 md:pl-8"
-        >
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-           Rizkytama David is an Informatics graduate from Universitas Amikom Yogyakarta, currently developing expertise in Data Analytics. He has professional experience as an External Supervisor at Waroeng Banyuwangi Selomartani, where he contributes to operational oversight and strategic improvements.
-          </p>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-           David is deeply interested in exploring the Food & Beverage (F&B) sector, Machine Learning, and Analytical Thinking.
-
-          </p>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
-            Passionate about data-driven decision making, predictive modeling, and applying technology to solve real-world challenges.
-          </p>
-        </motion.div>
+          {/* / Kolom Teks Deskripsi */}
+          <div className="md:col-span-3">
+            <h3 className="text-3xl font-semibold text-[#334155] mb-4">
+              Seorang {profile.role}
+            </h3>
+            <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
+              <p>
+                Saya adalah seorang antusias Machine Learning dengan minat mendalam di sektor Food & Beverage (F&B) dan pemikiran analitis. Saya bersemangat dalam pengambilan keputusan berbasis data, pemodelan prediktif, dan menerapkan teknologi untuk memecahkan tantangan di dunia nyata.
+              </p>
+            </div>
+            <div className="mt-8">
+              <a 
+                href="#contact" 
+                className="inline-block rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#fb923c] hover:bg-[#fb923c]/90 hover:scale-105"
+              >
+                Hubungi Saya
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </Section>
   );

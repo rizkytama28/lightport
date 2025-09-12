@@ -1,46 +1,46 @@
+// / Mengimpor ikon dan komponen Section
+import { Code, BrainCircuit, Database, Wind, Bot } from "lucide-react";
 import Section from "./Section";
-import { motion } from "framer-motion";
-import {
-  SiPython,
-  SiPytorch,
-  SiTensorflow,
-  SiScikitlearn,
-  SiPandas,
-  SiNumpy,
-  SiJupyter,
-  SiPlotly,
-} from "react-icons/si";
 
 const skills = [
-  { icon: <SiPython className="text-yellow-400" />, name: "Python" },
-  { icon: <SiPytorch className="text-red-500" />, name: "PyTorch" },
-  { icon: <SiTensorflow className="text-orange-500" />, name: "TensorFlow" },
-  { icon: <SiScikitlearn className="text-blue-500" />, name: "Scikit-learn" },
-  { icon: <SiPandas className="text-indigo-400" />, name: "Pandas" },
-  { icon: <SiNumpy className="text-blue-400" />, name: "NumPy" },
-  { icon: <SiJupyter className="text-orange-400" />, name: "Jupyter Notebook" },
-  { icon: <SiPlotly className="text-pink-400" />, name: "Matplotlib / Plotly" },
+  { name: "React", icon: <Code size={40} /> },
+  { name: "Tailwind CSS", icon: <Wind size={40} /> },
+  { name: "TypeScript", icon: <Code size={40} /> },
+  { name: "Machine Learning", icon: <BrainCircuit size={40} /> },
+  { name: "Data Analysis", icon: <Database size={40} /> },
+  { name: "AI Integration", icon: <Bot size={40} /> },
 ];
 
 export default function Skills() {
   return (
-    <Section id="skills" title="Skills" className="py-16">
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {skills.map((s, i) => (
-          <motion.div
-            key={s.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-            className="flex items-center gap-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-xl px-4 py-3 shadow hover:shadow-lg"
-          >
-            <span className="text-2xl">{s.icon}</span>
-            <span className="font-medium">{s.name}</span>
-          </motion.div>
-        ))}
+    // / Menggunakan <Section> untuk mengaktifkan animasi fade-in
+    <Section id="skills">
+      <div className="py-24 sm:py-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* / Judul Section */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
+              Keahlian & Teknologi
+            </h2>
+            <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
+          </div>
+
+          {/* / Grid untuk menampilkan kartu keahlian */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            {skills.map((skill, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                <div className="text-[#0d9488] mb-4">
+                  {skill.icon}
+                </div>
+                <h3 className="text-lg font-semibold text-[#334155]">
+                  {skill.name}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </Section>
   );
 }
+

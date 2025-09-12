@@ -25,6 +25,16 @@
 
   <!-- ✅ Favicon -->
   <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <script>
+    (function() {
+      try {
+        // Force default to light to avoid unexpected dark background from prior saves
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
   <body>

@@ -8,6 +8,7 @@ export default function Chatbot() {
   const { messages, isLoading, error, sendMessage } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -29,11 +30,10 @@ export default function Chatbot() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 btn-invert inline-flex items-center gap-2"
+        className="fixed bottom-6 right-6 bg-dark-slate text-white p-4 rounded-full shadow-lg hover:scale-110 hover:bg-opacity-90 transition-all"
         aria-label="Buka Asisten AI"
       >
-        <Bot size={20} />
-        <span>Asisten AI</span>
+        <Bot size={28} />
       </button>
     );
   }

@@ -1,53 +1,70 @@
-// Lokasi file: src/components/Hero.tsx (sesuaikan jika perlu)
-
+// / Mengimpor framer-motion untuk animasi yang lebih kompleks
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-
-// Komponen-komponen lokal Anda
-import Section from "./Section";
-
-// Impor data terpusat dari site.ts
-// PASTIKAN PATH INI BENAR SESUAI STRUKTUR FOLDER ANDA
 import { profile } from "../data/site";
+import { ArrowDown } from "lucide-react";
 
 export default function Hero() {
-  // Secara dinamis membuat 'sequence' untuk TypeAnimation dari array 'headlines' di site.ts
-  // Ini akan mengubah ['Teks 1', 'Teks 2'] menjadi ['Teks 1', 1500, 'Teks 2', 1500]
-  const animatedHeadlines = profile.headlines.flatMap((text) => [text, 1500]);
+  const animatedHeadlines = profile.headlines.flatMap((text) => [text, 2000]);
 
   return (
-    <Section id="home" className="relative pt-20 pb-28 text-center bg-[url('/bg.jpg')] bg-cover bg-center">
-      {/* Lapisan overlay gelap untuk membuat teks lebih mudah dibaca */}
-      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
-
-      {/* Kontainer utama dengan animasi masuk dari Framer Motion */}
+    <section id="home" className="relative h-screen flex items-center justify-center text-white text-center overflow-hidden">
+      {/* / REVISI #1: Background Image & Overlay dengan animasi fade-in */}
       <motion.div
-        className="relative"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
       >
-        {/* Nama ditampilkan secara dinamis dari site.ts */}
-        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-          {profile.name}
-        </h1>
-        
-        {/* Komponen animasi mengetik dengan data dinamis */}
-        <TypeAnimation
-          sequence={animatedHeadlines}
-          wrapper="p"
-          cursor={true}
-          repeat={Infinity}
-          className="mt-4 text-base sm:text-lg text-gray-200"
-        />
-
-        {/* Tombol Call-to-Action */}
-        <div className="mt-8 flex justify-center gap-3">
-          <a href="#projects" className="btn-invert">Lihat Projects</a>
-          <a href="#contact" className="btn-invert">Kontak Saya</a>
-        </div>
+        <img src="/bg.jpg" alt="Workspace" className="w-full h-full object-cover"/>
+        <div className="absolute inset-0 bg-black/40"></div>
       </motion.div>
-    </Section>
+      
+      {/* / Konten Hero */}
+      <div className="relative z-10 px-4">
+        {/* / REVISI #2: Judul masuk dari kiri */}
+        <motion.h1
+          className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4"
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+        >
+          Hello, I'm {profile.name}
+        </motion.h1>
+        
+        {/* / REVISI #2: TypeAnimation masuk dari kanan */}
+        <motion.div
+          className="text-xl sm:text-2xl md:text-3xl text-slate-300"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
+        >
+          <TypeAnimation sequence={animatedHeadlines} wrapper="span" cursor={true} repeat={Infinity}/>
+        </motion.div>
+        
+        {/* / Tombol masuk dari bawah */}
+        <motion.div
+          className="mt-10"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
+        >
+          <a 
+            href="#projects" 
+            className="inline-block rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c] hover:scale-105"
+          >
+            Lihat Proyek Saya
+          </a>
+        </motion.div>
+      </div>
+
+      {/* / Indikator Scroll */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <a href="#about" aria-label="Scroll down">
+          <ArrowDown className="w-8 h-8 animate-bounce"/>
+        </a>
+      </div>
+    </section>
   );
 }
+
