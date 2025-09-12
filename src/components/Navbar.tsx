@@ -40,6 +40,7 @@ export default function Navbar() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-lg shadow-sm' : 'bg-transparent'}`}>
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<<<<<<< HEAD
         {/* / REVISI: Nama Anda dengan animasi masuk dari kiri */}
         <motion.a
           href="#home"
@@ -50,6 +51,12 @@ export default function Navbar() {
         >
           Rizkytama David
         </motion.a>
+=======
+        {/* / Logo / Nama Anda */}
+        <a href="#home" className={`font-bold text-xl transition-colors ${isScrolled ? 'text-[#0d9488]' : 'text-white'}`}>
+          Rizkytama David
+        </a>
+>>>>>>> be7dc83612bf973eb329e5f92436bd8706f40acd
         
         <div className="flex items-center gap-4">
           {/* / REVISI: Daftar link dengan animasi masuk dari kanan */}
@@ -73,6 +80,7 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
+<<<<<<< HEAD
           </motion.ul>
           
           {/* / REVISI: Tombol "Hubungi Saya" dengan animasi masuk dari kanan */}
@@ -82,6 +90,20 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.9 }}
             className="hidden md:inline-block rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c]/90 hover:scale-105"
+=======
+          </ul>
+          <a href="#contact" className="rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c]/90 hover:scale-105">
+            Hubungi Saya
+          </a>
+        </div>
+
+        {/* / REVISI FINAL: Tombol Hamburger untuk Mobile */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`transition-colors ${isScrolled ? 'text-[#334155]' : 'text-white'}`}
+            aria-label="Toggle menu"
+>>>>>>> be7dc83612bf973eb329e5f92436bd8706f40acd
           >
             Get In Touch
           </motion.a>
