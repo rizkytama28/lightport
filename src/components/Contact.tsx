@@ -14,7 +14,7 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
-              Hubungi Saya
+              Get in Touch
             </h2>
             <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
           </div>
@@ -28,7 +28,7 @@ export default function Contact() {
               className="inline-flex items-center gap-2 mb-12 rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c] hover:scale-105"
             >
               <Mail size={20} />
-              <span>Kirim Email</span>
+              <span>Send Email</span>
             </a>
             <div className="flex justify-center gap-8">
               {profile.socials.map((social) => (

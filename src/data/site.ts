@@ -24,17 +24,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Smart Notes",
-    description: "Note-taking web app dengan search cepat & shortcut keyboard.",
-    tags: ["React", "Vite", "Tailwind"],
-    repo: "https://github.com/youruser/smart-notes",
+    title: "Menu Digital Waroeng Banyuwangi",
+    description: "Menu Digital dengan fitur CRUD dan Admin Dashboard.",
+    tags: ["PHP", "CSS", "HTML"],
+    repo: "https://github.com/rizkytama28/Menu-Digital_Waroeng-Banyuwangi",
   },
   {
-    title: "Image Segmentation Demo",
-    description: "Demo segmentasi gambar sederhana untuk studi komputer visi.",
-    tags: ["TypeScript", "Canvas", "ML UI"],
+    title: "Prediksi Harga Rumah Di Yogyakarta",
+    description: "Website Prediksi Harga Rumah dengan Algoritma Random Forest.",
+    tags: ["Phyton","Forecasting", "Machine Learning" , "Pandas", "Numpy"],
     link: "https://yourdemo.vercel.app",
-    repo: "https://github.com/youruser/segmentation-demo",
+    repo: "https://github.com/rizkytama28/Prediksi-Harga-Rumah-Yogyakarta",
   },
 ];
 

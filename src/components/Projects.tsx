@@ -12,7 +12,7 @@ export default function Projects() {
           {/* / Judul Section */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
-              Proyek Unggulan
+              Project
             </h2>
             <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
           </div>
