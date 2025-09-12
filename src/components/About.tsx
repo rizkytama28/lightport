@@ -1,5 +1,4 @@
 // / Mengimpor data profil dan komponen Section
-import { profile } from "../data/site";
 import Section from "./Section";
 
 export default function About() {
