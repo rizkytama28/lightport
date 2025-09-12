@@ -1,6 +1,5 @@
 // / Mengimpor hook dari React dan komponen lainnya
-import React, { useState } from "react";
-import { profile } from "../data/site";
+import { useState } from "react";
 import Section from "./Section";
 import Resume from "./Resume"; // / Impor komponen Resume baru
 import { X, Download } from "lucide-react";
