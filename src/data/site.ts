@@ -18,6 +18,7 @@ export type Project = {
   title: string;
   description: string;
   tags: string[];
+  thumbnail?: string;
   link?: string;
   repo?: string;
 };
@@ -27,12 +28,14 @@ export const projects: Project[] = [
     title: "Menu Digital Waroeng Banyuwangi",
     description: "Menu Digital dengan fitur CRUD dan Admin Dashboard.",
     tags: ["PHP", "CSS", "HTML"],
+    thumbnail: "./bg.jpg",
     repo: "https://github.com/rizkytama28/Menu-Digital_Waroeng-Banyuwangi",
   },
   {
     title: "Prediksi Harga Rumah Di Yogyakarta",
     description: "Website Prediksi Harga Rumah dengan Algoritma Random Forest.",
     tags: ["Phyton","Forecasting", "Machine Learning" , "Pandas", "Numpy"],
+    thumbnail: "./bg.jpg",
     link: "https://yourdemo.vercel.app",
     repo: "https://github.com/rizkytama28/Prediksi-Harga-Rumah-Yogyakarta",
   },
