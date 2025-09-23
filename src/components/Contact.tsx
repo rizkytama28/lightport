@@ -10,7 +10,6 @@ const socialIcons = {
 };
 
 export default function Contact() {
-  // / State untuk mengelola hasil pengiriman form
   const [result, setResult] = useState<string | null>(null);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,7 +17,8 @@ export default function Contact() {
     setResult("Mengirim....");
     const formData = new FormData(event.currentTarget);
 
-    formData.append("access_key", "GANTI_DENGAN_ACCESS_KEY_ANDA");
+    // / ▼▼▼ GANTI DENGAN ACCESS KEY WEB3FORMS ANDA ▼▼▼
+    formData.append("access_key", "3aec1ebf-ab88-46e9-8ec1-be6b69ee4189");
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -30,6 +30,7 @@ export default function Contact() {
     if (data.success) {
       setResult("Pesan berhasil terkirim!");
       (event.target as HTMLFormElement).reset();
+      // / Reset reCaptcha setelah berhasil
       // @ts-ignore
       grecaptcha.reset();
     } else {
@@ -60,41 +61,21 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-slate-700">Nama Lengkap</label>
-                <input 
-                  type="text" 
-                  name="name" 
-                  id="name" 
-                  required 
-                  // / REVISI: Menambahkan bg-white agar kontras
-                  className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
-                />
+                <input type="text" name="name" id="name" required className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"/>
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-slate-700">Alamat Email</label>
-                <input 
-                  type="email" 
-                  name="email" 
-                  id="email" 
-                  required 
-                  // / REVISI: Menambahkan bg-white agar kontras
-                  className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
-                />
+                <input type="email" name="email" id="email" required className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"/>
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-slate-700">Pesan</label>
-                <textarea 
-                  name="message" 
-                  id="message" 
-                  rows={4} 
-                  required
-                  // / REVISI: Menambahkan bg-white agar kontras
-                  className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
-                ></textarea>
+                <textarea name="message" id="message" rows={4} required className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"></textarea>
               </div>
 
+              {/* / ▼▼▼ GANTI DENGAN SITE KEY RECAPTCHA ANDA ▼▼▼ */}
               <div 
                 className="g-recaptcha"
-                data-sitekey="GANTI_DENGAN_SITE_KEY_ANDA"
+                data-sitekey="6Lec7dIrAAAAANkT5wivoAiaTcaYJG14LqI-sqX7"
               ></div>
 
               <div>
