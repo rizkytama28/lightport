@@ -80,7 +80,7 @@ export default function Resume() {
       {/* / Tombol Download */}
       <footer className="text-center mt-8 pt-4">
         <a 
-          href="/cvKU.pdf" // / Pastikan nama file ini sesuai dengan yang ada di folder public
+          href="/CV.pdf" // / Pastikan nama file ini sesuai dengan yang ada di folder public
           download
           className="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c] hover:scale-105"
         >

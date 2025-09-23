@@ -18,7 +18,15 @@ const containerVariants = {
 // / Varian animasi untuk setiap item (kartu)
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 90,
+      damping: 15,
+    } as const,
+  },
 };
 
 export default function Projects() {
@@ -47,7 +55,11 @@ export default function Projects() {
               <motion.div
                 key={project.title}
                 variants={itemVariants}
-                className="bg-white rounded-lg shadow-md overflow-hidden transition-spring duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col h-full"
+                whileHover={{
+                  y: -8,
+                  boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+                }}
+                className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full"
               >
                 {/* / Menambahkan thumbnail proyek */}
                 {project.thumbnail && (
@@ -88,4 +100,3 @@ export default function Projects() {
     </Section>
   );
 }
-
