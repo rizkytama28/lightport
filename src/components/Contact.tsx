@@ -10,6 +10,7 @@ const socialIcons = {
 };
 
 export default function Contact() {
+  // / State untuk mengelola hasil pengiriman form
   const [result, setResult] = useState<string | null>(null);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -17,7 +18,7 @@ export default function Contact() {
     setResult("Mengirim....");
     const formData = new FormData(event.currentTarget);
 
-    // / ▼▼▼ GANTI DENGAN ACCESS KEY WEB3FORMS ANDA ▼▼▼
+    // / GANTI DENGAN ACCESS KEY ANDA
     formData.append("access_key", "3aec1ebf-ab88-46e9-8ec1-be6b69ee4189");
 
     const response = await fetch("https://api.web3forms.com/submit", {
@@ -30,9 +31,6 @@ export default function Contact() {
     if (data.success) {
       setResult("Pesan berhasil terkirim!");
       (event.target as HTMLFormElement).reset();
-      // / Reset reCaptcha setelah berhasil
-      // @ts-ignore
-      grecaptcha.reset();
     } else {
       console.log("Error", data);
       setResult(data.message);
@@ -55,28 +53,57 @@ export default function Contact() {
               Punya pertanyaan atau ingin berdiskusi? Silakan isi formulir di bawah ini.
             </p>
             
+            {/* / Formulir Kontak Baru */}
             <form onSubmit={onSubmit} className="space-y-6">
               <input type="hidden" name="subject" value={`Pesan Baru dari Portofolio - ${profile.name}`} />
+              
+              {/* / REVISI: Menambahkan Honeypot untuk menangkal bot */}
               <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-slate-700">Nama Lengkap</label>
-                <input type="text" name="name" id="name" required className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"/>
+                <input 
+                  type="text" 
+                  name="name" 
+                  id="name" 
+                  required 
+                  className="mt-1 block w-full bg-white rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
+                />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-slate-700">Alamat Email</label>
-                <input type="email" name="email" id="email" required className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"/>
+                <input 
+                  type="email" 
+                  name="email" 
+                  id="email" 
+                  required 
+                  className="mt-1 block w-full bg-white rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
+                />
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-slate-700">Pesan</label>
-                <textarea name="message" id="message" rows={4} required className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"></textarea>
+                <textarea 
+                  name="message" 
+                  id="message" 
+                  rows={4} 
+                  required
+                  className="mt-1 block w-full bg-white rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
+                ></textarea>
               </div>
 
-              {/* / ▼▼▼ GANTI DENGAN SITE KEY RECAPTCHA ANDA ▼▼▼ */}
-              <div 
-                className="g-recaptcha"
-                data-sitekey="6Lec7dIrAAAAANkT5wivoAiaTcaYJG14LqI-sqX7"
-              ></div>
+              {/* / REVISI: Menambahkan checkbox persetujuan */}
+              <div className="flex items-center">
+                <input
+                  id="terms"
+                  name="terms"
+                  type="checkbox"
+                  required
+                  className="h-4 w-4 rounded border-slate-300 text-[#0d9488] focus:ring-[#0d9488]"
+                />
+                <label htmlFor="terms" className="ml-2 block text-sm text-slate-600">
+                  Saya setuju untuk dihubungi kembali.
+                </label>
+              </div>
 
               <div>
                 <button 
@@ -88,8 +115,10 @@ export default function Contact() {
               </div>
             </form>
 
+            {/* / Menampilkan status pengiriman pesan */}
             {result && <p className="text-center mt-4 text-slate-600">{result}</p>}
 
+            {/* / Tautan Sosial Media */}
             <div className="mt-12 text-center">
               <p className="mb-4 text-base text-gray-500">
                 Atau temukan saya di:
