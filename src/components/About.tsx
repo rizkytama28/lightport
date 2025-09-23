@@ -1,11 +1,11 @@
-// / Mengimpor hook dari React dan komponen lainnya
+// / Mengimpor hook dari React, komponen, dan ikon
 import { useState } from "react";
 import Section from "./Section";
-import Resume from "./Resume"; // / Impor komponen Resume baru
-import { X, Download } from "lucide-react";
+import Resume from "./Resume"; // / Impor komponen Resume
+import { X, Download } from "lucide-react"; // / Impor ikon baru
 
 export default function About() {
-  // / State untuk mengontrol visibilitas modal
+  // / State untuk mengontrol visibilitas modal (buka/tutup)
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ export default function About() {
           {/* / Judul Section */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
-              Mengapa Saya?
+              Mengapa Memilih Saya?
             </h2>
             <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
           </div>
@@ -33,11 +33,11 @@ export default function About() {
             {/* / Kolom Teks Deskripsi */}
             <div className="md:col-span-3">
               <h3 className="text-3xl font-semibold text-[#334155] mb-4">
-                Problem Solver Berbasis Teknologi
+                Informathics Graduate
               </h3>
               <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
                 <p>
-                  Sebagai seorang <strong>lulusan Informatika</strong>, saya menjelajahi dunia <strong>Data Analytics</strong> dan <strong>Machine Learning</strong> bukan hanya sebagai disiplin akademis, tetapi sebagai perangkat untuk menciptakan dampak. Saya memiliki fondasi yang kuat untuk memahami bagaimana teknologi bekerja dari akarnya.
+                  Sebagai seorang <strong>lulusan Informatika</strong>, saya mendalami <strong>Analisis Data</strong> dan <strong>Machine Learning</strong> dengan tujuan utama menerapkan teknologi dan pemikiran analitis untuk memecahkan tantangan dunia nyata. Saya percaya bahwa setiap solusi teknis harus efektif, efisien, dan memberikan dampak yang bermanfaat.
                 </p>
               </div>
               <div className="mt-8">
@@ -61,7 +61,9 @@ export default function About() {
           <div 
             className="relative w-full h-full max-w-4xl max-h-[90vh] overflow-y-auto"
           >
+            {/* / Menampilkan komponen Resume di dalam modal */}
             <Resume />
+            {/* / Tombol untuk menutup modal */}
             <button
               onClick={() => setIsResumeOpen(false)}
               className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black"

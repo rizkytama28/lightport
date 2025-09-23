@@ -47,7 +47,7 @@ export default function Projects() {
               <motion.div
                 key={project.title}
                 variants={itemVariants}
-                className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col h-full"
+                className="bg-white rounded-lg shadow-md overflow-hidden transition-spring duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col h-full"
               >
                 {/* / Menambahkan thumbnail proyek */}
                 {project.thumbnail && (

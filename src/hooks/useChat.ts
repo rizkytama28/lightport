@@ -1,7 +1,10 @@
+// / Mengimpor hook dari React dan kelas utama dari Google AI
 import { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { profile, projects } from "../data/site";
+// / REVISI: Mengimpor data baru (experiences, skills) dari site.ts
+import { profile, projects, experiences, skills } from "../data/site";
 
+// / Tipe data untuk setiap pesan dalam obrolan
 export type Message = {
   role: "user" | "model";
   parts: { text: string }[];
@@ -30,23 +33,39 @@ const safetySettings = [
   { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
 ];
 
-// REVISI: Mengubah array sosial media menjadi string yang mudah dibaca AI
-const socialsInfo = profile.socials.map(s => `${s.label}: ${s.href}`).join("\n- ");
+// / REVISI: Membuat string yang mudah dibaca AI dari data baru
+const experiencesInfo = experiences.map(exp => 
+  `- ${exp.role} di ${exp.company} (${exp.period}): ${exp.description.join(", ")}`
+).join("\n");
 
+const skillsInfo = skills.map(cat => 
+  `- Kategori ${cat.category}: ${cat.skills.join(", ")}`
+).join("\n");
+
+
+// / REVISI: "Contekan" AI sekarang diperbarui dengan semua informasi dari CV
 const aboutMeContext = `
 Anda adalah asisten AI yang ramah dan profesional di website portofolio milik ${profile.name}.
 Tugas Anda adalah menjawab pertanyaan dari pengunjung (seperti rekruter) berdasarkan informasi yang diberikan tentang ${profile.name}.
 Jangan menjawab pertanyaan yang tidak berhubungan dengan ${profile.name} atau portofolionya.
 
-Informasi tentang ${profile.name}:
-- Nama: ${profile.name}
+=== Informasi Lengkap tentang ${profile.name} ===
+- Nama Lengkap: ${profile.name}
+- Peran/Jabatan: ${profile.role}
+- Ringkasan Profesional: ${profile.bio}
+- Tautan Sosial Media: ${profile.socials.map(s => `${s.label}: ${s.href}`).join(", ")}
 - Email: ${profile.email}
-- Minat Utama: ${profile.headlines.join(", ")}
-- Proyek Unggulan: ${projects.map(p => `${p.title} (Deskripsi: ${p.description})`).join("; ")}
-- Tautan Sosial Media:
-- ${socialsInfo}
 
-Jawablah dengan singkat, jelas, dan profesional. Gunakan bahasa Indonesia yang baik.
+- Pengalaman Kerja:
+${experiencesInfo}
+
+- Keahlian:
+${skillsInfo}
+
+- Proyek Unggulan: 
+${projects.map(p => `- ${p.title}: ${p.description}`).join("\n")}
+
+Jawablah pertanyaan dengan singkat, jelas, dan profesional menggunakan bahasa Indonesia. Selalu berikan jawaban berdasarkan informasi yang tersedia di atas.
 `;
 
 export function useChat() {

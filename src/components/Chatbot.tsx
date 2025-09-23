@@ -25,12 +25,12 @@ export default function Chatbot() {
     }
   };
 
-  // REVISI #3: Tombol apung dibuat mirip tombol "Kontak Saya"
+  // REVISI: Tombol apung dengan hover yang berbeda
   if (!isOpen) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-dark-slate text-white p-4 rounded-full shadow-lg hover:scale-110 hover:bg-opacity-90 transition-all"
+        className="fixed bottom-6 right-6 bg-[#0d9488] text-white p-4 rounded-full shadow-lg hover:scale-110 hover:bg-[#fb923c] transition-all duration-300"
         aria-label="Buka Asisten AI"
       >
         <Bot size={28} />
@@ -38,25 +38,25 @@ export default function Chatbot() {
     );
   }
 
-  // REVISI #2: z-index dinaikkan agar tidak tertimpa navbar
+  // Jendela chatbot disesuaikan dengan palet warna
   return (
-    <div className="fixed bottom-6 right-6 w-96 h-[600px] bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 rounded-2xl shadow-xl flex flex-col z-[9999]">
+    <div className="fixed bottom-6 right-6 w-96 h-[600px] bg-white border border-slate-300 rounded-2xl shadow-xl flex flex-col z-[9999]">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center bg-gray-50 dark:bg-gray-900 rounded-t-2xl">
-        <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100">Asisten AI</h3>
-        <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white">
+      <div className="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-50 rounded-t-2xl">
+        <h3 className="font-bold text-lg text-[#0d9488]">Einzchat</h3>
+        <button onClick={() => setIsOpen(false)} className="text-slate-500 hover:text-[#0d9488]">
           <X size={20} />
         </button>
       </div>
 
-      {/* REVISI #1: Area pesan disesuaikan untuk mode gelap */}
-      <div className="flex-1 p-4 overflow-y-auto bg-white dark:bg-gray-950">
+      {/* Area Pesan */}
+      <div className="flex-1 p-4 overflow-y-auto bg-white">
         <div className="space-y-4">
           {/* Pesan Awal */}
           <div className="flex gap-3">
-            <div className="bg-black dark:bg-white text-white dark:text-black p-2 rounded-full h-fit"><Bot size={20} /></div>
-            <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg max-w-xs">
-              <p className="text-sm text-gray-800 dark:text-gray-200">Selamat datang! Saya asisten AI. Silakan ajukan pertanyaan tentang David.</p>
+            <div className="bg-[#0d9488] text-white p-2 rounded-full h-fit"><Bot size={20} /></div>
+            <div className="bg-slate-100 p-3 rounded-lg max-w-xs">
+              <p className="text-sm text-[#334155]">Selamat datang! Saya Einzchat. Silakan ajukan pertanyaan tentang David.</p>
             </div>
           </div>
 
@@ -66,7 +66,7 @@ export default function Chatbot() {
 
           {isLoading && (
             <div className="flex justify-center">
-              <LoaderCircle className="animate-spin text-gray-500 dark:text-gray-400" />
+              <LoaderCircle className="animate-spin text-slate-500" />
             </div>
           )}
 
@@ -81,17 +81,17 @@ export default function Chatbot() {
       </div>
 
       {/* Formulir Input */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 rounded-b-2xl">
+      <div className="p-4 border-t border-slate-200 bg-white rounded-b-2xl">
         <form onSubmit={handleSend} className="flex gap-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ketik pertanyaan Anda..."
-            className="flex-1 p-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white focus:outline-none"
+            className="flex-1 p-2 border border-slate-300 rounded-lg text-[#334155] focus:ring-2 focus:ring-[#0d9488] focus:outline-none"
             disabled={isLoading}
           />
-          <button type="submit" className="bg-black dark:bg-white text-white dark:text-black p-3 rounded-lg disabled:bg-gray-400" disabled={isLoading}>
+          <button type="submit" className="bg-[#0d9488] text-white p-3 rounded-lg disabled:bg-slate-400 hover:bg-[#0d9488]/90 transition" disabled={isLoading}>
             <Send size={20} />
           </button>
         </form>
@@ -100,13 +100,16 @@ export default function Chatbot() {
   );
 }
 
-// REVISI #1: Komponen pesan disesuaikan untuk mode gelap
+// Komponen pesan disesuaikan dengan palet warna
 function ChatMessage({ message }: { message: Message }) {
   const isModel = message.role === 'model';
   return (
     <div className={`flex gap-3 ${!isModel && 'justify-end'}`}>
-      {isModel && <div className="bg-black dark:bg-white text-white dark:text-black p-2 rounded-full h-fit"><Bot size={20} /></div>}
-      <div className={`${isModel ? 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200' : 'bg-black dark:bg-white text-white dark:text-black'} p-3 rounded-lg max-w-xs`}>
+      {/* Ikon untuk pesan dari AI */}
+      {isModel && <div className="bg-[#0d9488] text-white p-2 rounded-full h-fit self-end"><Bot size={20} /></div>}
+      
+      {/* Gelembung pesan */}
+      <div className={`${isModel ? 'bg-slate-100 text-[#334155]' : 'bg-[#0d9488] text-white'} p-3 rounded-lg max-w-xs`}>
         <p className="text-sm" style={{ whiteSpace: 'pre-wrap' }}>{message.parts[0].text}</p>
       </div>
     </div>

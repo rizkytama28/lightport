@@ -1,15 +1,33 @@
-// / Mengimpor framer-motion, ikon, dan komponen Section
+// / Mengimpor framer-motion, ikon-ikon relevan, data keahlian, dan komponen Section
 import { motion } from "framer-motion";
-import { Code, BrainCircuit, Database, Wind, Bot } from "lucide-react";
+import { Code, BarChart3, BrainCircuit, Database, Briefcase, ShieldCheck, TrendingUp, Search, Lightbulb, Users } from "lucide-react";
+import { skills } from "../data/site";
 import Section from "./Section";
+import React from "react";
 
-// / Varian animasi untuk kontainer grid (bisa digunakan ulang)
+// / Pemetaan dari nama keahlian ke komponen ikon
+const iconMap: { [key: string]: React.ReactNode } = {
+  "Python Programming": <Code size={18} className="text-[#0d9488]" />,
+  "Exploratory Data Analysis": <BarChart3 size={18} className="text-[#0d9488]" />,
+  "Deep Learning": <BrainCircuit size={18} className="text-[#0d9488]" />,
+  "Data Processing": <Database size={18} className="text-[#0d9488]" />,
+  "Basic Web Development": <Code size={18} className="text-[#0d9488]" />,
+  "Operational Management": <Briefcase size={18} className="text-[#0d9488]" />,
+  "Business Oversight": <ShieldCheck size={18} className="text-[#0d9488]" />,
+  "Financial Monitoring": <TrendingUp size={18} className="text-[#0d9488]" />,
+  "Analytical Thinking": <Search size={18} className="text-[#0d9488]" />,
+  "Problem Solving": <Lightbulb size={18} className="text-[#0d9488]" />,
+  "Collaboration": <Users size={18} className="text-[#0d9488]" />,
+};
+
+
+// / Varian animasi untuk kontainer grid
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // / Jeda lebih cepat untuk ikon yang lebih kecil
+      staggerChildren: 0.1, // / Jeda antar kartu dibuat sedikit lebih cepat
     },
   },
 };
@@ -17,17 +35,18 @@ const containerVariants = {
 // / Varian animasi untuk setiap item (kartu)
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const skills = [
-  { name: "React", icon: <Code size={40} /> },
-  { name: "Tailwind CSS", icon: <Wind size={40} /> },
-  { name: "TypeScript", icon: <Code size={40} /> },
-  { name: "Machine Learning", icon: <BrainCircuit size={40} /> },
-  { name: "Data Analysis", icon: <Database size={40} /> },
-  { name: "AI Integration", icon: <Bot size={40} /> },
-];
+  // / REVISI: Menambahkan properti transisi ke 'visible'
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    // / Menggunakan tipe 'spring' untuk animasi yang lebih natural dan halus
+    transition: {
+      type: "spring",
+      stiffness: 90,
+      damping: 15
+    }
+  },
+} as const;
 
 export default function Skills() {
   return (
@@ -37,32 +56,40 @@ export default function Skills() {
           {/* / Judul Section */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
-              Skills
+              Keahlian & Kompetensi
             </h2>
             <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
           </div>
 
-          {/* / REVISI: Grid sekarang menggunakan motion.div dengan varian animasi */}
+          {/* / Grid untuk menampilkan kategori keahlian dengan animasi */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
+            viewport={{ once: true, amount: 0.1 }}
+            className="grid md:grid-cols-3 gap-8"
           >
-            {skills.map((skill) => (
-              // / REVISI: Setiap kartu sekarang adalah motion.div
-              <motion.div
-                key={skill.name}
+            {skills.map((category) => (
+              // / Setiap kartu kategori dengan animasi dan efek hover
+              <motion.div 
+                key={category.category} 
                 variants={itemVariants}
-                className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+                whileHover={{ 
+                  y: -8, 
+                  boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" // Efek shadow-xl dari Tailwind
+                }}
+                className="bg-white p-6 rounded-lg shadow-md"
               >
-                <div className="text-[#0d9488] mb-4">
-                  {skill.icon}
-                </div>
-                <h3 className="text-lg font-semibold text-[#334155]">
-                  {skill.name}
-                </h3>
+                <h3 className="text-xl font-bold text-[#0d9488] mb-4">{category.category}</h3>
+                <ul className="space-y-3">
+                  {category.skills.map(skill => (
+                    // / Menampilkan ikon di samping setiap keahlian
+                    <li key={skill} className="flex items-center text-slate-600">
+                      {iconMap[skill] || <div className="w-[18px]"></div>}
+                      <span className="ml-3">{skill}</span>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </motion.div>
@@ -71,4 +98,3 @@ export default function Skills() {
     </Section>
   );
 }
-
