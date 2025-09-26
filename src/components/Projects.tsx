@@ -10,7 +10,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // / Jeda 0.2 detik antara setiap kartu
+      staggerChildren: 0.3, // / Jeda 0.2 detik antara setiap kartu
     },
   },
 };
@@ -59,15 +59,15 @@ export default function Projects() {
                   y: -8,
                   boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
                 }}
-                className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full"
+                className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full group" // Ditambahkan 'group'
               >
                 {/* / Menambahkan thumbnail proyek */}
                 {project.thumbnail && (
-                  <div className="aspect-w-4 aspect-h-3 bg-slate-200">
+                  <div className="aspect-w-4 aspect-h-3 bg-slate-200 overflow-hidden"> {/* Ditambahkan overflow-hidden */}
                     <img 
                       src={project.thumbnail} 
                       alt={`Thumbnail untuk ${project.title}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" // Ditambahkan class transisi & zoom
                     />
                   </div>
                 )}

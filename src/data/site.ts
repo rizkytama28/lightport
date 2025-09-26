@@ -4,7 +4,7 @@ export const profile = {
   role: "Informatics Graduate | Data Science",
   email: "rizkytama0012@gmail.com",
   // / Bio singkat yang diambil dari CV baru Anda
-  bio: "Lulusan Informatika dari Universitas Amikom Yogyakarta yang saat ini sedang mengembangkan keahlian di bidang Analisis Data, dengan minat mendalam pada sektor F&B dan Machine Learning. Bersemangat dalam pengambilan keputusan berbasis data dan penerapan teknologi untuk menyelesaikan tantangan nyata.",
+  bio: "Rizkytama David is an Informatics graduate from Universitas Amikom Yogyakarta, currently on an intensive journey to become an End-to-End Data Professional, mastering skills across Data Engineering, Machine Learning, and Cloud Infrastructure. He has professional experience as an External Supervisor at Waroeng Banyuwangi Selomartani, where he contributes to operational oversight and strategic improvements.\n\nPassionate about data-driven decision making, predictive modeling, and applying a full-stack data perspective to create impactful technology.",
   headlines: [
     'Exploring Data Analytics.',
     'Passionate about Data Science.',

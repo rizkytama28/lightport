@@ -10,11 +10,23 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false); // State untuk menu mobile
 
+  // Efek untuk memeriksa hash URL saat komponen dimuat
+  useEffect(() => {
+    const currentHash = window.location.hash.replace("#", "");
+    if (currentHash && sections.includes(currentHash)) {
+      setActive(currentHash);
+    }
+  }, []);
+
   // Efek untuk mengubah latar belakang navbar saat scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+
+    // Panggil sekali saat mount untuk memeriksa posisi awal
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -53,15 +65,17 @@ export default function Navbar() {
     },
   };
 
+  const isHeroActive = active === 'home';
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-lg shadow-sm' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${!isHeroActive || isScrolled ? 'bg-white/90 backdrop-blur-lg shadow-sm' : 'bg-transparent'}`}>
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <motion.a
           href="#home"
           initial={{ opacity: 0, x: -25 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={`font-bold text-xl transition-colors ${isScrolled ? 'text-[#0d9488]' : 'text-white'}`}
+          className={`font-bold text-xl transition-colors ${!isHeroActive || isScrolled ? 'text-[#0d9488]' : 'text-white'}`}
         >
           Rizkytama David
         </motion.a>
@@ -81,7 +95,7 @@ export default function Navbar() {
                   className={`relative z-10 px-4 py-2 rounded-md transition-colors duration-300 ${
                     active === item
                       ? "text-white"
-                      : `hover:text-[#0d9488] ${isScrolled ? 'text-[#334155]' : 'text-slate-200 hover:text-white'}`
+                      : `hover:text-[#0d9488] ${!isHeroActive || isScrolled ? 'text-[#334155]' : 'text-slate-200 hover:text-white'}`
                   }`}
                 >
                   {item.charAt(0).toUpperCase() + item.slice(1)}
@@ -112,7 +126,7 @@ export default function Navbar() {
         <div className="md:hidden">
           <motion.button 
             onClick={() => setIsOpen(!isOpen)}
-            className={`relative z-50 transition-colors ${isScrolled && !isOpen ? 'text-[#334155]' : 'text-white'}`}
+            className={`relative z-50 transition-colors ${isOpen ? 'text-[#334155]' : (!isHeroActive || isScrolled ? 'text-[#334155]' : 'text-white')}`}
             whileTap={{ scale: 0.95 }}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
