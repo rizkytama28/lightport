@@ -82,7 +82,7 @@ export default function Skills() {
                   y: -8, 
                   boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
                 }}
-                className="bg-white p-6 rounded-lg shadow-md"
+                className="bg-slate-50 border border-slate-200 p-6 rounded-lg shadow-sm"
               >
                 <h3 className="text-xl font-bold text-[#0d9488] mb-4">{category.category}</h3>
                 <motion.div 
@@ -95,7 +95,7 @@ export default function Skills() {
                     <motion.span 
                       key={skill} 
                       variants={badgeVariants}
-                      className="flex items-center gap-2 bg-slate-100 text-slate-700 text-sm font-medium px-3 py-1.5 rounded-full"
+                      className="flex items-center gap-2 bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1.5 rounded-full"
                     >
                       {/* REVISI: Langsung render ikon dari map, tanpa cloneElement */}
                       {iconMap[skill] || <div className="w-[16px]"></div>}

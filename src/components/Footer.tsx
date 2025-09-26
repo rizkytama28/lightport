@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="border-t border-slate-200 py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className="text-sm text-slate-500">
-          © {new Date().getFullYear()} {profile.name}. Kompak Team.
+          © {new Date().getFullYear()} {profile.name}.
         </p>
       </div>
     </footer>

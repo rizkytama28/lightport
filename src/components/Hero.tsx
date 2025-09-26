@@ -7,16 +7,15 @@ import { ArrowDown } from "lucide-react";
 export default function Hero() {
   const animatedHeadlines = profile.headlines.flatMap((text) => [text, 2000]);
 
-  // Teks untuk dianimasikan
-  const heroText = `Hello, I'm ${profile.name}`;
-  const words = heroText.split(" ");
+  // Teks untuk dianimasikan dalam 3 baris
+  const words = ["Hello,", "<br/>", "I'm", "Rizkytama", "David", "<br/>", "Mulia", "Graha"];
 
   // Varian animasi untuk kontainer (mengatur stagger)
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.3, // Jeda antar kata
+        staggerChildren: 0.15, // Sedikit percepat jeda antar kata
       },
     },
   };
@@ -35,7 +34,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center text-white text-center overflow-hidden">
+    <section id="home" className="relative h-screen flex items-center justify-start text-white text-left overflow-hidden px-8 sm:px-16 lg:px-24">
       {/* Background Image & Overlay */}
       <motion.div
         className="absolute inset-0"
@@ -49,21 +48,25 @@ export default function Hero() {
       
       {/* Konten Hero */}
       <div className="relative z-10 px-4">
-        {/* REVISI: Judul dengan animasi blur-in per kata menggunakan Framer Motion */}
+        {/* Judul dengan animasi per kata dan dukungan multi-baris */}
         <motion.h1
-          className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 flex flex-wrap justify-center"
+          className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 flex flex-wrap justify-start"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {words.map((word, index) => (
-            <motion.span
-              key={index}
-              variants={wordVariants}
-              className="inline-block mr-4" // Memberi jarak antar kata
-            >
-              {word}
-            </motion.span>
+            word === "<br/>" ? (
+              <div key={index} className="w-full"></div>
+            ) : (
+              <motion.span
+                key={index}
+                variants={wordVariants}
+                className="inline-block mr-4"
+              >
+                {word}
+              </motion.span>
+            )
           ))}
         </motion.h1>
         

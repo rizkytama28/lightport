@@ -67,7 +67,7 @@ export default function Contact() {
                   name="name" 
                   id="name" 
                   required 
-                  className="mt-1 block w-full bg-white rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
+                  className="mt-1 block w-full bg-slate-100 rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
                 />
               </div>
               <div>
@@ -77,7 +77,7 @@ export default function Contact() {
                   name="email" 
                   id="email" 
                   required 
-                  className="mt-1 block w-full bg-white rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
+                  className="mt-1 block w-full bg-slate-100 rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
                 />
               </div>
               <div>
@@ -87,7 +87,7 @@ export default function Contact() {
                   id="message" 
                   rows={4} 
                   required
-                  className="mt-1 block w-full bg-white rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
+                  className="mt-1 block w-full bg-slate-100 rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
                 ></textarea>
               </div>
 

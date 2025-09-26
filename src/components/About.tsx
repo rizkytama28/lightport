@@ -4,6 +4,7 @@ import Section from "./Section";
 import Resume from "./Resume";
 import { X, Download } from "lucide-react";
 import { profile } from "../data/site";
+import PixelTransition from "./PixelTransition";
 
 // Data untuk Tab
 const tabs = [
@@ -58,16 +59,31 @@ export default function About() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ staggerChildren: 0.2 }}
           >
-            {/* Kolom Gambar dengan Animasi */}
+            {/* Kolom Gambar dengan Efek Transisi Piksel */}
             <motion.div 
               className="md:col-span-2"
               variants={{ hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0 } }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <img 
-                src="/profile.jpg"
-                alt="Foto Profil Rizky Tama"
-                className="rounded-lg shadow-lg w-full h-auto object-cover"
+              <PixelTransition
+                firstContent={(
+                  <img 
+                    src="/profile.jpg"
+                    alt="Foto Profil Rizky Tama"
+                    className="w-full h-full object-cover"
+                  />
+                )}
+                secondContent={(
+                  <img 
+                    src="/foto.jpg"
+                    alt="Foto Alternatif"
+                    className="w-full h-full object-cover"
+                  />
+                )}
+                className="w-full h-auto rounded-lg shadow-lg border-0"
+                pixelColor="#000000ff"
+                gridSize={10}
+                animationStepDuration={0.4}
               />
             </motion.div>
 

@@ -59,7 +59,7 @@ export default function Projects() {
                   y: -8,
                   boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
                 }}
-                className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full group" // Ditambahkan 'group'
+                className="bg-slate-50 border border-slate-200 rounded-lg shadow-sm overflow-hidden flex flex-col h-full group" // Ditambahkan 'group'
               >
                 {/* / Menambahkan thumbnail proyek */}
                 {project.thumbnail && (
