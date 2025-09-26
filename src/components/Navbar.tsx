@@ -44,12 +44,12 @@ export default function Navbar() {
     closed: {
       opacity: 0,
       y: "-100%",
-      transition: { duration: 0.3, ease: "easeInOut" },
+      transition: { duration: 0.3 },
     },
     open: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4, ease: "easeInOut" },
+      transition: { duration: 0.4 },
     },
   };
 
