@@ -106,7 +106,7 @@ export default function TechCarousel() {
           viewport={{ once: true, amount: 0.6 }}
           onMouseMove={(e) => mouseX.set(e.clientX)}
           onMouseLeave={() => mouseX.set(Infinity)}
-          className="flex h-32 items-center justify-center gap-8"
+          className="flex flex-wrap h-32 items-center justify-center gap-8"
         >
           {technologies.map((tech) => (
             <AppIcon mouseX={mouseX} tech={tech} key={tech.name} />

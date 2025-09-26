@@ -66,27 +66,33 @@ export default function Navbar() {
           Rizkytama David
         </motion.a>
         
-        {/* Navigasi Desktop */}
+        {/* Navigasi Desktop dengan Sliding Indicator */}
         <div className="hidden md:flex items-center gap-4">
           <motion.ul
             initial={{ opacity: 0, x: 25 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
-            className="flex gap-2 text-sm font-medium"
+            className="flex items-center gap-2 text-sm font-medium relative"
           >
             {sections.slice(1).map((item) => (
-              <li key={item}>
+              <li key={item} className="relative">
                 <a
                   href={`#${item}`}
-                  onClick={() => setIsOpen(false)}
-                  className={`px-4 py-2 rounded-md transition-colors ${
+                  className={`relative z-10 px-4 py-2 rounded-md transition-colors duration-300 ${
                     active === item
-                      ? "bg-[#0d9488] text-white"
+                      ? "text-white"
                       : `hover:text-[#0d9488] ${isScrolled ? 'text-[#334155]' : 'text-slate-200 hover:text-white'}`
                   }`}
                 >
                   {item.charAt(0).toUpperCase() + item.slice(1)}
                 </a>
+                {active === item && (
+                  <motion.div
+                    layoutId="active-pill"
+                    className="absolute inset-0 bg-[#0d9488] rounded-md"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
               </li>
             ))}
           </motion.ul>

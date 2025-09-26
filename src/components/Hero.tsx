@@ -88,7 +88,7 @@ export default function Hero() {
             href="#projects" 
             className="inline-block rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c] hover:scale-105"
           >
-            Project
+            Explore Projects
           </a>
         </motion.div>
       </div>
