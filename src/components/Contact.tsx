@@ -18,7 +18,8 @@ export default function Contact() {
     setResult("Mengirim....");
     const formData = new FormData(event.currentTarget);
 
-    formData.append("access_key", "GANTI_DENGAN_ACCESS_KEY_ANDA");
+    // / GANTI DENGAN ACCESS KEY ANDA
+    formData.append("access_key", "3aec1ebf-ab88-46e9-8ec1-be6b69ee4189");
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -30,8 +31,6 @@ export default function Contact() {
     if (data.success) {
       setResult("Pesan berhasil terkirim!");
       (event.target as HTMLFormElement).reset();
-      // @ts-ignore
-      grecaptcha.reset();
     } else {
       console.log("Error", data);
       setResult(data.message);
@@ -54,8 +53,11 @@ export default function Contact() {
               Punya pertanyaan atau ingin berdiskusi? Silakan isi formulir di bawah ini.
             </p>
             
+            {/* / Formulir Kontak Baru */}
             <form onSubmit={onSubmit} className="space-y-6">
               <input type="hidden" name="subject" value={`Pesan Baru dari Portofolio - ${profile.name}`} />
+              
+              {/* / REVISI: Menambahkan Honeypot untuk menangkal bot */}
               <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
               <div>
@@ -65,8 +67,7 @@ export default function Contact() {
                   name="name" 
                   id="name" 
                   required 
-                  // / REVISI: Menambahkan bg-white agar kontras
-                  className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
+                  className="mt-1 block w-full bg-white rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
                 />
               </div>
               <div>
@@ -76,8 +77,7 @@ export default function Contact() {
                   name="email" 
                   id="email" 
                   required 
-                  // / REVISI: Menambahkan bg-white agar kontras
-                  className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
+                  className="mt-1 block w-full bg-white rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
                 />
               </div>
               <div>
@@ -87,15 +87,23 @@ export default function Contact() {
                   id="message" 
                   rows={4} 
                   required
-                  // / REVISI: Menambahkan bg-white agar kontras
-                  className="mt-1 block w-full rounded-md border-slate-300 bg-white shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
+                  className="mt-1 block w-full bg-white rounded-md border-slate-300 shadow-sm focus:border-[#0d9488] focus:ring-[#0d9488] sm:text-sm p-3"
                 ></textarea>
               </div>
 
-              <div 
-                className="g-recaptcha"
-                data-sitekey="GANTI_DENGAN_SITE_KEY_ANDA"
-              ></div>
+              {/* / REVISI: Menambahkan checkbox persetujuan */}
+              <div className="flex items-center">
+                <input
+                  id="terms"
+                  name="terms"
+                  type="checkbox"
+                  required
+                  className="h-4 w-4 rounded border-slate-300 text-[#0d9488] focus:ring-[#0d9488]"
+                />
+                <label htmlFor="terms" className="ml-2 block text-sm text-slate-600">
+                  Saya setuju untuk dihubungi kembali.
+                </label>
+              </div>
 
               <div>
                 <button 
@@ -107,8 +115,10 @@ export default function Contact() {
               </div>
             </form>
 
+            {/* / Menampilkan status pengiriman pesan */}
             {result && <p className="text-center mt-4 text-slate-600">{result}</p>}
 
+            {/* / Tautan Sosial Media */}
             <div className="mt-12 text-center">
               <p className="mb-4 text-base text-gray-500">
                 Atau temukan saya di:

@@ -27,7 +27,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // / Jeda antar kartu dibuat sedikit lebih cepat
+      staggerChildren: 0.2, // / Jeda antar kartu dibuat sedikit lebih cepat
     },
   },
 };
