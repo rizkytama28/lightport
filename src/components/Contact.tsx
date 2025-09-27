@@ -1,12 +1,13 @@
 // / Mengimpor hook dari React dan ikon
 import React, { useState } from "react";
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 import { profile } from "../data/site";
 import Section from "./Section";
 
 const socialIcons = {
-  GitHub: <Github size={24} />,
+  Instagram: <Instagram size={24} />,
   LinkedIn: <Linkedin size={24} />,
+  GitHub: <Github size={24} />,
 };
 
 export default function Contact() {
@@ -43,14 +44,14 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
-              Hubungi Saya
+              Get In Touch
             </h2>
             <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
           </div>
 
           <div className="max-w-2xl mx-auto">
             <p className="text-center text-lg text-slate-600 leading-relaxed mb-8">
-              Punya pertanyaan atau ingin berdiskusi? Silakan isi formulir di bawah ini.
+              Let's work together! Whether you have a question or just want to say hi, my inbox is always open. I'll do my best to get back to you!
             </p>
             
             {/* / Formulir Kontak Baru */}
@@ -61,7 +62,7 @@ export default function Contact() {
               <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-700">Nama Lengkap</label>
+                <label htmlFor="name" className="block text-sm font-medium text-slate-700">Name</label>
                 <input 
                   type="text" 
                   name="name" 
@@ -71,7 +72,7 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-slate-700">Alamat Email</label>
+                <label htmlFor="email" className="block text-sm font-medium text-slate-700">Email Address</label>
                 <input 
                   type="email" 
                   name="email" 
@@ -81,7 +82,7 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-700">Pesan</label>
+                <label htmlFor="message" className="block text-sm font-medium text-slate-700">Message</label>
                 <textarea 
                   name="message" 
                   id="message" 
@@ -101,7 +102,7 @@ export default function Contact() {
                   className="h-4 w-4 rounded border-slate-300 text-[#0d9488] focus:ring-[#0d9488]"
                 />
                 <label htmlFor="terms" className="ml-2 block text-sm text-slate-600">
-                  Saya setuju untuk dihubungi kembali.
+                  I agree to be contacted again.
                 </label>
               </div>
 
@@ -110,7 +111,7 @@ export default function Contact() {
                   type="submit"
                   className="w-full inline-flex justify-center rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c] hover:scale-105"
                 >
-                  Kirim Pesan
+                  Submit 
                 </button>
               </div>
             </form>
@@ -121,7 +122,7 @@ export default function Contact() {
             {/* / Tautan Sosial Media */}
             <div className="mt-12 text-center">
               <p className="mb-4 text-base text-gray-500">
-                Atau temukan saya di:
+                Or find me on social media:
               </p>
               <div className="flex justify-center gap-8">
                 {profile.socials.map((social) => (

@@ -11,8 +11,9 @@ export const profile = {
     'Solving real-world challenges with technology.',
   ],
   socials: [
-    { label: "GitHub", href: "https://github.com/rizkytama28" },
+    { label: "Instagram", href: "https://instagram.com/mgrahaam" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/rizkytama-david-a1197b376/" },
+    { label: "GitHub", href: "https://github.com/rizkytama28" },
   ],
 };
 
