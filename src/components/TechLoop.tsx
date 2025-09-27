@@ -1,4 +1,4 @@
-import { SiReact, SiTailwindcss, SiTypescript, SiPython, SiPhp, SiCss3, SiHtml5, SiNumpy, SiPandas } from "react-icons/si";
+import { SiReact, SiTailwindcss, SiTypescript, SiPython, SiPhp, SiCss3, SiHtml5, SiNumpy, SiPandas, SiScikitlearn, SiDatabricks, SiTableau } from "react-icons/si";
 import Section from "./Section";
 import LogoLoop, { type LogoItem } from "./LogoLoop";
 
@@ -11,6 +11,9 @@ const technologies = [
   { name: "PHP", icon: <SiPhp size={40} className="text-[#777BB4]" /> },
   { name: "Pandas", icon: <SiPandas size={40} className="text-[#150458]" /> },
   { name: "Numpy", icon: <SiNumpy size={40} className="text-[#013243]" /> },
+  { name: "Scikit-learn", icon: <SiScikitlearn size={40} className="text-[#F7931E]" /> },
+  { name: "Matplotlib", icon: <SiDatabricks size={40} className="text-[#8246AF]" /> },
+  { name: "Seaborn", icon: <SiTableau size={40} className="text-[#007ACC]" /> },
   { name: "CSS3", icon: <SiCss3 size={40} className="text-[#1572B6]" /> },
   { name: "HTML5", icon: <SiHtml5 size={40} className="text-[#E34F26]" /> },
 ];

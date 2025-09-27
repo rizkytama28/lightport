@@ -31,7 +31,7 @@ export const projects: Project[] = [
   {
     title: "Menu Digital Waroeng Banyuwangi",
     description: "Menu Digital dengan fitur CRUD dan Admin Dashboard.",
-    tags: ["PHP", "CSS", "HTML"],
+    tags: ["PHP", "CSS", "HTML", "MySQL", "JavaScript"],
     thumbnail: "./bg.jpg", // / Ganti dengan path gambar Anda
     repo: "https://github.com/rizkytama28/Menu-Digital_Waroeng-Banyuwangi",
     link: "#",
@@ -39,7 +39,7 @@ export const projects: Project[] = [
   {
     title: "Prediksi Harga Rumah Di Yogyakarta",
     description: "Website Prediksi Harga Rumah dengan Algoritma Random Forest.",
-    tags: ["Python","Forecasting", "Machine Learning" , "Pandas", "Numpy"],
+    tags: ["Python","Scikit-Learn", "Machine Learning" , "Pandas", "Numpy","Matplotlib","Seaborn"],
     thumbnail: "./bg.jpg", // / Ganti dengan path gambar Anda
     repo: "https://github.com/rizkytama28/Prediksi-Harga-Rumah-Yogyakarta",
     link: "#",

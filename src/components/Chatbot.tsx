@@ -115,4 +115,3 @@ function ChatMessage({ message }: { message: Message }) {
     </div>
   );
 }
-
