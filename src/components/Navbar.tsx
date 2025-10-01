@@ -69,16 +69,20 @@ export default function Navbar() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${!isHeroActive || isScrolled ? 'bg-white/90 backdrop-blur-lg shadow-sm' : 'bg-transparent'}`}>
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <motion.a
-          href="#home"
-          initial={{ opacity: 0, x: -25 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className={`font-bold text-xl transition-colors ${!isHeroActive || isScrolled ? 'text-[#0d9488]' : 'text-white'}`}
-        >
-          Rizkytama David
-        </motion.a>
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex-shrink-0">
+            <motion.a
+              href="#home"
+              initial={{ opacity: 0, x: -50 }} // Made animation more pronounced
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }} // Made animation more pronounced
+              className={`text-2xl font-bold transition-colors duration-300 ${
+                !isHeroActive || isScrolled ? "text-[#0d9488]" : "text-white"
+              }`}>
+              Rizkytama David
+            </motion.a>
+          </div>
         
         {/* Navigasi Desktop dengan Sliding Indicator */}
         <div className="hidden md:flex items-center gap-4">
@@ -132,6 +136,7 @@ export default function Navbar() {
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
         </div>
+        </div>
       </nav>
 
       {/* Panel Menu Mobile dengan Animasi */}
@@ -146,11 +151,11 @@ export default function Navbar() {
           >
             <ul className="flex flex-col items-center gap-4 p-6">
               {sections.slice(1).map((item) => (
-                <li key={item}>
+                <li key={item} className="w-full">
                   <a
                     href={`#${item}`}
                     onClick={() => setIsOpen(false)} // Tutup menu saat link diklik
-                    className={`px-4 py-2 rounded-md w-full text-center transition-colors text-lg font-medium ${
+                    className={`px-4 py-2 rounded-md w-full block text-center transition-colors text-lg font-medium ${
                       active === item
                         ? "bg-[#0d9488] text-white"
                         : "text-[#334155] hover:bg-slate-100"

@@ -82,7 +82,7 @@ export default function About() {
                 )}
                 className="w-full h-auto rounded-lg shadow-lg border-0"
                 pixelColor="#000000ff"
-                gridSize={10}
+                gridSize={15}
                 animationStepDuration={0.4}
               />
             </motion.div>
