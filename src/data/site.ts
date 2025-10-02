@@ -21,27 +21,33 @@ export const profile = {
 export type Project = {
   title: string;
   description: string;
+  fullDescription: string;
   tags: string[];
+  technologies: string[];
   thumbnail?: string;
   link?: string;
   repo?: string;
 };
 
-// / Daftar proyek Anda (tidak berubah)
+// / Daftar proyek Anda (diperbarui dengan fullDescription dan technologies)
 export const projects: Project[] = [
   {
     title: "Menu Digital Waroeng Banyuwangi",
     description: "Menu Digital dengan fitur CRUD dan Admin Dashboard.",
+    fullDescription: "Aplikasi menu digital yang dirancang untuk Waroeng Banyuwangi, memungkinkan pelanggan untuk melihat menu dan melakukan pemesanan. Dilengkapi dengan dashboard admin untuk manajemen menu (Create, Read, Update, Delete).",
     tags: ["PHP", "CSS", "HTML", "MySQL", "JavaScript"],
-    thumbnail: "./bg.jpg", // / Ganti dengan path gambar Anda
+    technologies: ["PHP", "CSS", "HTML", "MySQL", "JavaScript"],
+    thumbnail: "./bg.jpg",
     repo: "https://github.com/rizkytama28/Menu-Digital_Waroeng-Banyuwangi",
     link: "#",
   },
   {
     title: "Prediksi Harga Rumah Di Yogyakarta",
     description: "Website Prediksi Harga Rumah dengan Algoritma Random Forest.",
+    fullDescription: "Sebuah model machine learning yang memprediksi harga rumah di Yogyakarta berdasarkan berbagai fitur. Model ini dibangun menggunakan algoritma Random Forest dan disajikan melalui antarmuka web yang sederhana.",
     tags: ["Python","Scikit-Learn", "Machine Learning" , "Pandas", "Numpy","Matplotlib","Seaborn"],
-    thumbnail: "./bg.jpg", // / Ganti dengan path gambar Anda
+    technologies: ["Python","Scikit-Learn", "Pandas", "Numpy"],
+    thumbnail: "./bg.jpg",
     repo: "https://github.com/rizkytama28/Prediksi-Harga-Rumah-Yogyakarta",
     link: "#",
   },

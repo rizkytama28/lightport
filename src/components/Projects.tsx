@@ -1,21 +1,20 @@
-// / Mengimpor framer-motion untuk animasi, ikon, data, dan komponen Section
+
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Link as LinkIcon } from "lucide-react";
 import { projects } from "../data/site";
 import Section from "./Section";
+import ProjectModal from "./ProjectModal"; // Impor komponen modal
 
-// / Varian animasi untuk kontainer grid
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3, // / Jeda 0.2 detik antara setiap kartu
+      staggerChildren: 0.3,
     },
   },
 };
 
-// / Varian animasi untuk setiap item (kartu)
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -30,11 +29,29 @@ const itemVariants = {
 };
 
 export default function Projects() {
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+
+  const openModal = (index: number) => setSelectedProjectIndex(index);
+  const closeModal = () => setSelectedProjectIndex(null);
+
+  const handleNext = () => {
+    if (selectedProjectIndex !== null) {
+      setSelectedProjectIndex((selectedProjectIndex + 1) % projects.length);
+    }
+  };
+
+  const handlePrev = () => {
+    if (selectedProjectIndex !== null) {
+      setSelectedProjectIndex((selectedProjectIndex - 1 + projects.length) % projects.length);
+    }
+  };
+  
+  const selectedProject = selectedProjectIndex !== null ? projects[selectedProjectIndex] : null;
+
   return (
     <Section id="projects">
       <div className="py-24 sm:py-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* / Judul Section */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
               Projects
@@ -42,7 +59,6 @@ export default function Projects() {
             <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
           </div>
 
-          {/* / REVISI: Grid sekarang menggunakan motion.div dengan varian animasi */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -50,8 +66,7 @@ export default function Projects() {
             viewport={{ once: true, amount: 0.1 }}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {projects.map((project) => (
-              // / REVISI: Setiap kartu sekarang adalah motion.div
+            {projects.map((project, index) => (
               <motion.div
                 key={project.title}
                 variants={itemVariants}
@@ -59,15 +74,15 @@ export default function Projects() {
                   y: -8,
                   boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
                 }}
-                className="bg-slate-50 border border-slate-200 rounded-lg shadow-sm overflow-hidden flex flex-col h-full group" // Ditambahkan 'group'
+                className="bg-slate-50 border border-slate-200 rounded-lg shadow-sm overflow-hidden flex flex-col h-full group cursor-pointer"
+                onClick={() => openModal(index)}
               >
-                {/* / Menambahkan thumbnail proyek */}
                 {project.thumbnail && (
-                  <div className="aspect-w-4 aspect-h-3 bg-slate-200 overflow-hidden"> {/* Ditambahkan overflow-hidden */}
+                  <div className="aspect-w-4 aspect-h-3 bg-slate-200 overflow-hidden">
                     <img 
                       src={project.thumbnail} 
                       alt={`Thumbnail untuk ${project.title}`}
-                      className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" // Ditambahkan class transisi & zoom
+                      className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
                     />
                   </div>
                 )}
@@ -78,25 +93,19 @@ export default function Projects() {
                   <p className="text-slate-600 mb-4 flex-grow">
                     {project.description}
                   </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="bg-[#0d9488]/10 text-[#0d9488] text-xs font-semibold px-2.5 py-1 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mt-auto pt-4 border-t border-slate-200 flex items-center gap-4">
-                    {project.repo && ( <a href={project.repo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-[#0d9488] transition-colors"> <Github size={20} /> <span>Kode</span> </a> )}
-                    {project.link && ( <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-[#0d9488] transition-colors"> <LinkIcon size={20} /> <span>Live Demo</span> </a> )}
-                  </div>
                 </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </div>
+      
+      <ProjectModal 
+        project={selectedProject}
+        onClose={closeModal}
+        onNext={handleNext}
+        onPrev={handlePrev}
+      />
     </Section>
   );
 }
