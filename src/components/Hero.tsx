@@ -72,7 +72,7 @@ export default function Hero() {
         
         {/* TypeAnimation masuk dari kanan */}
         <motion.div
-          className="text-xl sm:text-2xl md:text-3xl text-slate-300"
+          className="text-xl sm:text-2xl md:text-3xl text-slate-300 font-mono"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}

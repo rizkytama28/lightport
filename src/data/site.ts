@@ -51,6 +51,16 @@ export const projects: Project[] = [
     repo: "https://github.com/rizkytama28/Prediksi-Harga-Rumah-Yogyakarta",
     link: "#",
   },
+  {
+    title: "E-Katalog Pempek Bhayangkara",
+    description: "Website katalog dan pemesanan online dengan dasbor admin dan integrasi WhatsApp.",
+    fullDescription: "Website e-katalog yang dirancang untuk Pempek Bhayangkara sebagai etalase online utama. Aplikasi ini memungkinkan pelanggan untuk melihat menu yang dinamis, lengkap dengan filter kategori dan sorotan produk best seller. Proses pemesanan diintegrasikan langsung ke WhatsApp untuk kemudahan komunikasi. Website ini juga dilengkapi dasbor admin fungsional untuk manajemen konten menu dan kategori secara penuh (Create, Read, Update, Delete).",
+    tags: ["Astro", "React", "Tailwind CSS", "Supabase"],
+    technologies: ["Astro", "React", "Tailwind CSS", "Supabase"] ,
+    thumbnail: "./bg.jpg",
+    repo: "https://github.com/rizkytama28/pempek",
+    link: "https://pempek-steel.vercel.app/",
+  },
 ];
 
 // / Struktur data baru untuk Keahlian yang dikategorikan

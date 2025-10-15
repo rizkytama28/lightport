@@ -117,10 +117,10 @@ export default function Navbar() {
           
           <motion.a
             href="#contact"
-            initial={{ opacity: 0, x: 5 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="inline-block rounded-lg px-6 py-3 font-semibold text-white transition-spring duration-300 bg-[#0d9488] hover:bg-[#fb923c]/90 hover:scale-105"
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+            className="inline-block rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300 bg-[#0d9488] hover:bg-[#fb923c]/90 hover:scale-105"
           >
             Get In Touch
           </motion.a>
