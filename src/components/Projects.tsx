@@ -74,15 +74,17 @@ export default function Projects() {
                   y: -8,
                   boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
                 }}
-                className="bg-slate-50 border border-slate-200 rounded-lg shadow-sm overflow-hidden flex flex-col h-full group cursor-pointer"
+                className="bg-slate-50 border border-slate-200 rounded-lg shadow-sm overflow-hidden flex flex-col h-full cursor-pointer"
                 onClick={() => openModal(index)}
               >
                 {project.thumbnail && (
-                  <div className="aspect-w-4 aspect-h-3 bg-slate-200 overflow-hidden">
-                    <img 
+                  <div className="overflow-hidden">
+                    <motion.img 
                       src={project.thumbnail} 
                       alt={`Thumbnail untuk ${project.title}`}
-                      className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                      className="w-full h-full object-cover aspect-[4/3]"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: 'tween', ease: 'easeOut', duration: 0.3 }}
                     />
                   </div>
                 )}

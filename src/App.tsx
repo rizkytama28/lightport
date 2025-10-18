@@ -7,7 +7,6 @@ import Projects from "./components/Projects";
 import TechLoop from "./components/TechLoop"; // / Impor komponen baru
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Chatbot from "./components/Chatbot";
 import SectionCard from "./components/SectionCard"; // Impor komponen kartu
 
 function App() {
@@ -31,7 +30,6 @@ function App() {
           </SectionCard>
         </div>
       </main>
-      <Chatbot />
       <Footer />
     </div>
   );
