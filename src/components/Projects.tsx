@@ -1,113 +1,101 @@
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "../data/site";
+import type { Project } from "../data/site";
 import Section from "./Section";
-import ProjectModal from "./ProjectModal"; // Impor komponen modal
+import ProjectModal from "./ProjectModal";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-    },
-  },
+
+
+const getCardSpan = (project: Project) => {
+  if (project.title === "E-Katalog Pempek Bhayangkara") return "md:col-span-2 md:row-span-2";
+  if (project.title === "Menu Digital Waroeng Banyuwangi" || project.title === " Aplikasi Prediksi Harga Rumah Yogyakarta") return "md:col-span-2";
+  return "md:col-span-1";
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 90,
-      damping: 15,
-    } as const,
-  },
-};
+const getCardOrder = (project: Project) => {
+  if (project.title === "E-Katalog Pempek Bhayangkara") return "order-first";
+  return "";
+}
 
 export default function Projects() {
-  const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const openModal = (index: number) => setSelectedProjectIndex(index);
-  const closeModal = () => setSelectedProjectIndex(null);
+  const openModal = (project: Project) => {
+    setSelectedProject(project);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+  };
 
   const handleNext = () => {
-    if (selectedProjectIndex !== null) {
-      setSelectedProjectIndex((selectedProjectIndex + 1) % projects.length);
+    if (selectedProject) {
+      const currentIndex = projects.findIndex(p => p.title === selectedProject.title);
+      const nextIndex = (currentIndex + 1) % projects.length;
+      setSelectedProject(projects[nextIndex]);
     }
   };
 
   const handlePrev = () => {
-    if (selectedProjectIndex !== null) {
-      setSelectedProjectIndex((selectedProjectIndex - 1 + projects.length) % projects.length);
+    if (selectedProject) {
+      const currentIndex = projects.findIndex(p => p.title === selectedProject.title);
+      const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
+      setSelectedProject(projects[prevIndex]);
     }
   };
-  
-  const selectedProject = selectedProjectIndex !== null ? projects[selectedProjectIndex] : null;
 
   return (
     <Section id="projects">
       <div className="py-24 sm:py-32">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#334155] tracking-tight">
+            <h2 className="text-4xl font-bold text-slate-800 tracking-tight">
               Projects
             </h2>
-            <div className="mt-4 w-24 h-1 bg-[#0d9488] mx-auto rounded"></div>
+            <div className="mt-4 w-24 h-1 bg-teal-500 mx-auto rounded"></div>
           </div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {projects.map((project, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[20rem]">
+            {projects.map((project) => (
               <motion.div
                 key={project.title}
-                variants={itemVariants}
-                whileHover={{
-                  y: -8,
-                  boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-                }}
-                className="bg-slate-50 border border-slate-200 rounded-lg shadow-sm overflow-hidden flex flex-col h-full cursor-pointer"
-                onClick={() => openModal(index)}
+                layoutId={`card-${project.title}`}
+                onClick={() => openModal(project)}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.2 }}
+                className={`relative rounded-lg overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-300 ${getCardSpan(project)} ${getCardOrder(project)}`}
               >
-                {project.thumbnail && (
-                  <div className="overflow-hidden">
-                    <motion.img 
-                      src={project.thumbnail} 
-                      alt={`Thumbnail untuk ${project.title}`}
-                      className="w-full h-full object-cover aspect-[4/3]"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: 'tween', ease: 'easeOut', duration: 0.3 }}
-                    />
-                  </div>
-                )}
-                <div className="p-6 flex-grow flex flex-col">
-                  <h3 className="text-xl font-bold text-[#334155] mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-slate-600 mb-4 flex-grow">
-                    {project.description}
-                  </p>
+                <motion.img
+                  layoutId={`image-${project.title}`}
+                  src={project.thumbnail}
+                  alt={`Thumbnail for ${project.title}`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 p-4 md:p-6 text-white">
+                  <h3 className="text-xl font-bold">{project.title}</h3>
+                  <p className="text-sm text-slate-200 mt-1">{project.description}</p>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
-      
-      <ProjectModal 
-        project={selectedProject}
-        onClose={closeModal}
-        onNext={handleNext}
-        onPrev={handlePrev}
-      />
+
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={closeModal}
+            onNext={handleNext}
+            onPrev={handlePrev}
+          />
+        )}
+      </AnimatePresence>
     </Section>
   );
 }
